@@ -6,7 +6,7 @@ const connect = function () {
     host: "172.18.73.176",
     port: 50541,
   });
-
+  
   // event handler for when the connection is established
   conn.on("connect", () => {
     console.log("Connected to game server");
@@ -87,4 +87,10 @@ const connect = function () {
   return conn;
 };
 
-module.exports = { connect };
+const handleUserInput = function (data) {
+  if (data === '\u0003') { // \u0003 maps to ctrl+c input
+    process.exit();
+  }
+};
+
+module.exports = { connect, handleUserInput };
