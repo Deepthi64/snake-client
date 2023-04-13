@@ -87,10 +87,6 @@ const connect = function () {
   return conn;
 };
 
-const handleUserInput = function (data) {
-  if (data === '\u0003') { // \u0003 maps to ctrl+c input
-    process.exit();
-  }
-};
 
-module.exports = { connect, handleUserInput };
+
+module.exports = { connect };
