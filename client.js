@@ -12,6 +12,7 @@ const connect = function () {
     console.log('data',data);
     console.log("Connected to game server");
     conn.write('Name: SNK'); 
+    conn.write('says: Hi there')
   });
   
   // event handler for incoming data
