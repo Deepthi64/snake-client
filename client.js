@@ -3,79 +3,17 @@ const net = require("net");
 // establishes a connection with the game server
 const connect = function () {
   const conn = net.createConnection({
-    host: "172.18.73.176",
-    port: 50541,
+    host: "165.227.47.243",
+    port: 8081,
+  });
+
+  // event handler for when the connection is established
+  conn.on("connect", (data) => {
+    console.log('data',data);
+    console.log("Connected to game server");
+    conn.write('Name: SNK'); 
   });
   
-  // event handler for when the connection is established
-  conn.on("connect", () => {
-    console.log("Connected to game server");
-    conn.write('Name: SNK');
-
-    let direction;
-
-    // move up every 50ms
-    setInterval(() => {
-      if (direction === "up") {
-        conn.write("Move: up");
-      } else if (direction === "left") {
-        conn.write("Move: left");
-      } else if (direction === "right") {
-        conn.write("Move: right");
-      } else {
-        conn.write("Move: up");
-      }
-    }, 50);
-
-    // move down every 50ms after a 250ms delay
-    setTimeout(() => {
-      direction = "down";
-      setInterval(() => {
-        if (direction === "down") {
-          conn.write("Move: down");
-        } else if (direction === "left") {
-          conn.write("Move: left");
-        } else if (direction === "right") {
-          conn.write("Move: right");
-        } else {
-          conn.write("Move: down");
-        }
-      }, 50);
-    }, 250);
-
-    // move right every 50ms after a 500ms delay
-    setTimeout(() => {
-      direction = "right";
-      setInterval(() => {
-        if (direction === "right") {
-          conn.write("Move: right");
-        } else if (direction === "up") {
-          conn.write("Move: up");
-        } else if (direction === "down") {
-          conn.write("Move: down");
-        } else {
-          conn.write("Move: right");
-        }
-      }, 50);
-    },500);
-
-    // move left every 50ms after a 750ms delay
-    setTimeout(() => {
-      direction = "left";
-      setInterval(() => {
-        if (direction === "left") {
-          conn.write("Move: left");
-        } else if (direction === "up") {
-          conn.write("Move: up");
-        } else if (direction === "down") {
-          conn.write("Move: down");
-        } else {
-          conn.write("Move: left");
-        }
-      }, 50);
-    }, 750);
-  });
-
   // event handler for incoming data
   conn.on("data", (data) => {
     console.log("Server says:", data);
@@ -86,7 +24,5 @@ const connect = function () {
 
   return conn;
 };
-
-
 
 module.exports = { connect };
