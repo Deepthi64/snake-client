@@ -33,7 +33,5 @@ Press 1 to say Hello
 Press 2 to say GoodGame!
 Press 3 to say LOL!
 
-# Acknowledgements
 
-This project was not built from scratch. It was inspired and started from snek (blog post). Tania Rascia is the original author.
 
